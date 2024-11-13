@@ -15,16 +15,15 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 object AppModule {
     private const val BASE_URL = "https://api.open-meteo.com/"
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideWeatherApi(): WeatherApi{
-        return Retrofit
-            .Builder()
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
@@ -32,8 +31,8 @@ object AppModule {
     }
 
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient {
         return LocationServices.getFusedLocationProviderClient(app)
     }
