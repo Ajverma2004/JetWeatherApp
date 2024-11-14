@@ -60,26 +60,26 @@ class MainActivity : ComponentActivity() {
                 val city by remember {
                     mutableStateOf("")
                 }
-                Scaffold(
-                    topBar = {
-                        CustomTextField(
-                            icon = Icons.Default.Search,
-                            search = {
-                                viewModel.loadWeatherInfoByCity(city)
-                            }
-                        )
-                    },
-                    modifier = Modifier.padding(top = 20.dp)
-                ) { paddingValues->
-                    HomeScreen(
-                        data = viewModel.state,
-                        modifier = Modifier.padding(paddingValues)
-                    )
-                }
+//                Scaffold(
+//                    topBar = {
+//                        CustomTextField(
+//                            icon = Icons.Default.Search,
+//                            search = {
+////                                viewModel.loadWeatherInfoByCity(city)
+//                            }
+//                        )
+//                    },
+//                    modifier = Modifier.padding(top = 20.dp)
+//                ) { paddingValues->
 //                    HomeScreen(
 //                        data = viewModel.state,
-////                        modifier = Modifier.padding(paddingValues)
+//                        modifier = Modifier.padding(paddingValues)
 //                    )
+//                }
+                    HomeScreen(
+                        data = viewModel.state,
+//                        modifier = Modifier.padding(paddingValues)
+                    )
             }
         }
     }
