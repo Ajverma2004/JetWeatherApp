@@ -98,7 +98,7 @@ fun WeatherCard(
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(10.dp)
+                    modifier = Modifier.padding(12.dp)
                 ) {
                     Row(
                         modifier = Modifier.padding(10.dp)
@@ -111,10 +111,10 @@ fun WeatherCard(
                                     0f to Color.White,
                                     1f to Color.White.copy(alpha = 0.3f)
                                 ),
-                                fontSize = 80.sp,
+                                fontSize = 75.sp,
                                 fontWeight = FontWeight.Black
                             ),
-                            modifier = Modifier.padding(end = 16.dp)
+                            modifier = Modifier.padding(end = 10.dp)
                         )
                         Text(
                             text = "°",
@@ -123,7 +123,7 @@ fun WeatherCard(
                                     0f to Color.White,
                                     1f to Color.White.copy(alpha = 0.3f)
                                 ),
-                                fontSize = 70.sp,
+                                fontSize = 75.sp,
                                 fontWeight = FontWeight.Light,
                             ),
                             modifier = Modifier.padding(top = 2.dp)

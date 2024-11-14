@@ -11,13 +11,22 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ajverma.jetweatherapp.domain.util.CustomTextField
 import com.ajverma.jetweatherapp.presentation.ui.screens.home.HomeScreen
 import com.ajverma.jetweatherapp.presentation.ui.screens.home.HomeScreenViewModel
 import com.ajverma.jetweatherapp.ui.theme.JetWeatherAppTheme
@@ -48,7 +57,29 @@ class MainActivity : ComponentActivity() {
         
         setContent {
             JetWeatherAppTheme {
-                HomeScreen(data = viewModel.state)
+                val city by remember {
+                    mutableStateOf("")
+                }
+                Scaffold(
+                    topBar = {
+                        CustomTextField(
+                            icon = Icons.Default.Search,
+                            search = {
+                                viewModel.loadWeatherInfoByCity(city)
+                            }
+                        )
+                    },
+                    modifier = Modifier.padding(top = 20.dp)
+                ) { paddingValues->
+                    HomeScreen(
+                        data = viewModel.state,
+                        modifier = Modifier.padding(paddingValues)
+                    )
+                }
+//                    HomeScreen(
+//                        data = viewModel.state,
+////                        modifier = Modifier.padding(paddingValues)
+//                    )
             }
         }
     }
