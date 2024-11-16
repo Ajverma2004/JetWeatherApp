@@ -45,6 +45,14 @@ fun HourlyForecastData(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
+        Text(
+            text = "Hourly forecast",
+            style = MaterialTheme.typography.titleLarge,
+            color = ColorTextPrimary,
+            fontWeight = FontWeight.Bold,
+            fontSize = 28.sp,
+            modifier = Modifier.padding(bottom = 7.dp, start = 10.dp)
+        )
         data.weatherData?.weatherDataPerDay?.get(0)?.let { data ->
             LazyRow(
                 content = {

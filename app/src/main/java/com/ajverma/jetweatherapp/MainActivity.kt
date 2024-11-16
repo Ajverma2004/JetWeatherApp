@@ -9,10 +9,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Scaffold
@@ -24,11 +28,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ajverma.jetweatherapp.domain.util.AppScaffold
 import com.ajverma.jetweatherapp.domain.util.CustomTextField
 import com.ajverma.jetweatherapp.presentation.ui.screens.home.HomeScreen
 import com.ajverma.jetweatherapp.presentation.ui.screens.home.HomeScreenViewModel
@@ -62,43 +68,20 @@ class MainActivity : ComponentActivity() {
         
         setContent {
             JetWeatherAppTheme {
-                var city by remember {
-                    mutableStateOf("")
-                }
-
-                Scaffold(
-                    topBar = {
-                        CustomTextField(
-                            startingIcon = Icons.Default.ArrowBack,
-                            trailingIcon1 = Icons.Default.Search,
-                            trailingIcon2 = Icons.Outlined.FavoriteBorder,
-                            text = city,
-                            onTextChange = { city = it },
-                            singleLine = true,
-                            trailingIcon1Action = {
-                                viewModel.loadWeatherInfoByCity(city)
-                            },
-                            trailingIcon2Action = {
-
-                            },
-                            isHomeScreen = true,
-                            startingIconAction = {
-
-                            }
-                        )
-                    },
-                    modifier = Modifier.padding(top = 20.dp)
-                ) { paddingValues->
+                AppScaffold(
+                    isHomeScreen = true,
+                    title = "WeatherApp",
+                    trailingIcon = Icons.Default.FavoriteBorder,
+                    navigationIcon = Icons.Default.ArrowBack,
+                    trailingAction = {},
+                    navigationAction = {}
+                ) { paddingValues ->
                     HomeScreen(
                         data = viewModel.state,
-                        modifier = Modifier.padding(paddingValues)
+                        viewModel = viewModel,
+                        modifier = paddingValues
                     )
                 }
-
-//                    HomeScreen(
-//                        data = viewModel.state,
-////                        modifier = Modifier.padding(paddingValues)
-//                    )
             }
         }
     }

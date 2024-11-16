@@ -44,7 +44,6 @@ fun WeatherCard(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .padding(top = 20.dp)
                 .clip(RoundedCornerShape(32.dp))
                 .shadow(15.dp)
                 .background(
