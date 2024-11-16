@@ -31,11 +31,12 @@ import com.ajverma.jetweatherapp.ui.theme.ColorGradient3
 @Composable
 fun CustomTextField(
     modifier: Modifier = Modifier,
+    text: String,
+    onTextChange: (String) -> Unit,
     keyboardType: KeyboardType = KeyboardType.Text,
     icon: ImageVector,
-    search: () -> Unit
+    search: () -> Unit,
 ) {
-    var text by remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
 
     val backgroundBrush =
@@ -54,7 +55,7 @@ fun CustomTextField(
     ) {
         OutlinedTextField(
             value = text,
-            onValueChange = { text = it },
+            onValueChange = { onTextChange(it) },
             placeholder = { Text(text = "Enter a city name") },
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             textStyle = TextStyle(brush = backgroundBrush),

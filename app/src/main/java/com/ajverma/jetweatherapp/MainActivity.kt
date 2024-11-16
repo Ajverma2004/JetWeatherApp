@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +32,8 @@ import com.ajverma.jetweatherapp.presentation.ui.screens.home.HomeScreen
 import com.ajverma.jetweatherapp.presentation.ui.screens.home.HomeScreenViewModel
 import com.ajverma.jetweatherapp.ui.theme.JetWeatherAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -57,29 +60,33 @@ class MainActivity : ComponentActivity() {
         
         setContent {
             JetWeatherAppTheme {
-                val city by remember {
+                var city by remember {
                     mutableStateOf("")
                 }
-//                Scaffold(
-//                    topBar = {
-//                        CustomTextField(
-//                            icon = Icons.Default.Search,
-//                            search = {
-////                                viewModel.loadWeatherInfoByCity(city)
-//                            }
-//                        )
-//                    },
-//                    modifier = Modifier.padding(top = 20.dp)
-//                ) { paddingValues->
-//                    HomeScreen(
-//                        data = viewModel.state,
-//                        modifier = Modifier.padding(paddingValues)
-//                    )
-//                }
+
+                Scaffold(
+                    topBar = {
+                        CustomTextField(
+                            icon = Icons.Default.Search,
+                            text = city,
+                            onTextChange = { city = it },
+                            search = {
+                                viewModel.loadWeatherInfoByCity(city)
+                            }
+                        )
+                    },
+                    modifier = Modifier.padding(top = 20.dp)
+                ) { paddingValues->
                     HomeScreen(
                         data = viewModel.state,
-//                        modifier = Modifier.padding(paddingValues)
+                        modifier = Modifier.padding(paddingValues)
                     )
+                }
+
+//                    HomeScreen(
+//                        data = viewModel.state,
+////                        modifier = Modifier.padding(paddingValues)
+//                    )
             }
         }
     }

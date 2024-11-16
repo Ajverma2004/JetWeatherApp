@@ -1,5 +1,6 @@
 package com.ajverma.jetweatherapp.data.Repository
 
+import android.util.Log
 import com.ajverma.jetweatherapp.data.mappers.toWeatherInfo
 import com.ajverma.jetweatherapp.data.remote.GeoCodingApi
 import com.ajverma.jetweatherapp.data.remote.GeocodingResult
@@ -16,13 +17,16 @@ class WeatherRepositoryImpl @Inject constructor(
 
 ): WeatherRepository {
     override suspend fun getWeather(lat: Double, long: Double): Resource<WeatherInfo> {
+        Log.d("api", api.getWeather(lat,long).weatherData.toString())
         return try {
             Resource.Success(
+
                 data = api.getWeather(
                     lat = lat,
                     long = long
                 ).toWeatherInfo()
             )
+
         }
         catch (e: Exception){
             e.printStackTrace()
