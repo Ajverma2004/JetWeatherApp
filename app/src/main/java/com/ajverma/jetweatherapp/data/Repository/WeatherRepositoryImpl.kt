@@ -3,6 +3,7 @@ package com.ajverma.jetweatherapp.data.Repository
 import android.util.Log
 import com.ajverma.jetweatherapp.data.mappers.toWeatherInfo
 import com.ajverma.jetweatherapp.data.remote.GeoCodingApi
+import com.ajverma.jetweatherapp.data.remote.Geocoding
 import com.ajverma.jetweatherapp.data.remote.GeocodingResult
 import com.ajverma.jetweatherapp.data.remote.WeatherApi
 import com.ajverma.jetweatherapp.data.remote.WeatherDto
@@ -34,7 +35,7 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getWeatherByCity(city: String?): Resource<GeocodingResult> {
+    override suspend fun getWeatherByCity(city: String?): Resource<Geocoding> {
         return try {
             Resource.Success(
                 data = geoApi.getWeatherByCity(city)

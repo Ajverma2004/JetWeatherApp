@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ajverma.jetweatherapp.domain.weather.WeatherData
+import com.ajverma.jetweatherapp.domain.weather.WeatherInfo
 import com.ajverma.jetweatherapp.presentation.ui.screens.WeatherState
 import com.ajverma.jetweatherapp.ui.theme.ColorGradient1
 import com.ajverma.jetweatherapp.ui.theme.ColorGradient2
@@ -37,7 +38,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun HourlyForecastData(
     modifier: Modifier = Modifier,
-    data: WeatherState
+    data: WeatherState<WeatherInfo>
 ) {
     Column(
         modifier = Modifier

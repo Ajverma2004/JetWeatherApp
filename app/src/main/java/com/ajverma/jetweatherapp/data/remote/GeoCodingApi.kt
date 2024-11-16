@@ -7,5 +7,5 @@ interface GeoCodingApi {
     @GET("v1/search")
     suspend fun getWeatherByCity(
         @Query("name") city: String?
-    ): GeocodingResult
+    ): Geocoding
 }

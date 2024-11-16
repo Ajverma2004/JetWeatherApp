@@ -12,7 +12,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -67,11 +69,21 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     topBar = {
                         CustomTextField(
-                            icon = Icons.Default.Search,
+                            startingIcon = Icons.Default.ArrowBack,
+                            trailingIcon1 = Icons.Default.Search,
+                            trailingIcon2 = Icons.Outlined.FavoriteBorder,
                             text = city,
                             onTextChange = { city = it },
-                            search = {
+                            singleLine = true,
+                            trailingIcon1Action = {
                                 viewModel.loadWeatherInfoByCity(city)
+                            },
+                            trailingIcon2Action = {
+
+                            },
+                            isHomeScreen = true,
+                            startingIconAction = {
+
                             }
                         )
                     },

@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -34,10 +35,15 @@ fun CustomTextField(
     text: String,
     onTextChange: (String) -> Unit,
     keyboardType: KeyboardType = KeyboardType.Text,
-    icon: ImageVector,
-    search: () -> Unit,
+    startingIcon: ImageVector,
+    trailingIcon1: ImageVector,
+    trailingIcon2: ImageVector,
+    startingIconAction: () -> Unit,
+    trailingIcon1Action: () -> Unit,
+    trailingIcon2Action: () -> Unit,
+    isHomeScreen: Boolean,
+    singleLine: Boolean = true
 ) {
-    var isFocused by remember { mutableStateOf(false) }
 
     val backgroundBrush =
         Brush.linearGradient(
@@ -49,7 +55,7 @@ fun CustomTextField(
     Row(
         modifier = modifier
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
 
     ) {
@@ -61,16 +67,42 @@ fun CustomTextField(
             textStyle = TextStyle(brush = backgroundBrush),
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(15.dp)),
+                .clip(RoundedCornerShape(25.dp))
+                .padding(16.dp)
+            ,
+            singleLine = singleLine,
+            leadingIcon = {
+                if (!isHomeScreen){
+                    Icon(
+                        imageVector = startingIcon,
+                        contentDescription = "icon",
+                        modifier = Modifier
+                            .clickable {
+                                startingIconAction()
+                            }
+                    )
+                }
+            },
             trailingIcon = {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = "icon",
-                    modifier = Modifier
-                        .clickable {
-                            search()
-                        }
-                )
+                Row {
+                    Icon(
+                        imageVector = trailingIcon1,
+                        contentDescription = "icon",
+                        modifier = Modifier
+                            .clickable {
+                                trailingIcon1Action()
+                            }
+                    )
+                    Icon(
+                        imageVector = trailingIcon2,
+                        contentDescription = "icon",
+                        modifier = Modifier
+                            .clickable {
+                                trailingIcon2Action()
+                            }
+                            .padding(start = 8.dp, end = 8.dp) // Adds spacing between the icons
+                    )
+                }
             }
         )
     }

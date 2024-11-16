@@ -37,7 +37,7 @@ import kotlin.math.roundToInt
 @Composable
 fun AirQualityData(
     modifier: Modifier = Modifier,
-    state: WeatherState
+    state: WeatherState<WeatherInfo>
 ) {
 
     state.weatherData?.currentWeatherData?.let {
