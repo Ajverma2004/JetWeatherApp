@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ajverma.jetweatherapp.domain.weather.WeatherInfo
-import com.ajverma.jetweatherapp.presentation.ui.screens.WeatherState
+import com.ajverma.jetweatherapp.presentation.ui.screens.home.WeatherState
 import com.ajverma.jetweatherapp.ui.theme.ColorGradient1
 import com.ajverma.jetweatherapp.ui.theme.ColorGradient2
 import com.ajverma.jetweatherapp.ui.theme.ColorGradient3

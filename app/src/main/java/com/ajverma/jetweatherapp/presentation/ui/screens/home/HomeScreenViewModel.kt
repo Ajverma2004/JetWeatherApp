@@ -6,12 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ajverma.jetweatherapp.data.remote.Geocoding
 import com.ajverma.jetweatherapp.domain.location.LocationTracker
 import com.ajverma.jetweatherapp.domain.repository.WeatherRepository
 import com.ajverma.jetweatherapp.domain.util.Resource
 import com.ajverma.jetweatherapp.domain.weather.WeatherInfo
-import com.ajverma.jetweatherapp.presentation.ui.screens.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
